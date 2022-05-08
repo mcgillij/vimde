@@ -40,7 +40,7 @@ Neovim Plugins:
 Setting this up takes a bit of effort as you need to know how to install / manage the plugins required to make this work.
 When first loading your `nvim` you may get some Errors since the plug-in manager needs to be installed.
 
-Follow along here: https://github.com/junegunn/vim-plug to install `Plug`
+Follow along here: https://github.com/junegunn/vim-plug to install `Plug` or copy `.local/share/nvim/site/autoload/plug.vim` from this repo.
 
 Once `Plug` is installed, you can install / fetch all the plugins defined in the configuration with `:PlugInstall`
 
@@ -57,7 +57,5 @@ Once the plugins are installed you should be able to activate GitHub Copilot wit
 Any extra directions or configurations you can follow along by reading the `init.vim` file.
 To open this in nvim use the `,ec` command, and once you save any modifications you can hot-reload the configuration with `,sc`
 
-## Usage
-Use `nvim` as usual for editing.
-
-When editing a Python project with poetry managed dependencies you can use the `vimde` command assuming you've added it to your path which will just call the tmuxp with the vimde.yaml configuration.
+## How to "use" this repo
+This assumes a fresh user on a fresh Linux install, allowing me to quickly setup my environment on a different machine. I just clone the repo, and then move all the files to ~/, and make sure that my `PATH` has `~/bin` in it.
