@@ -21,6 +21,7 @@ This allows me to follow some REPL driven development and debugging and allows m
 - `,sc` will reload this configuration
 - `<Tab>` and `<Shift><Tab>` will cycle splits
 - `<Ctrl-c>` will send selection to IPython if running with TMUX
+- `,z` and `,Z` to zoom and un-zoom a split
 
 ## Dependencies
 
