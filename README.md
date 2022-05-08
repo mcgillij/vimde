@@ -4,6 +4,9 @@ Neovim + IPython and some plugins to work with a REPL workflow.
 This repo is mainly a backup of my working configurations, but feel free to use them if you want to.
 If you aren't interested in running IPython along side neovim in TMUX, you can just grab the `.config/nvim/init.vim` and still have a fancy setup.
 
+# Screenshot
+![https://github.com/mcgillij/vimde/blob/main/screenshot.png?raw=true](https://github.com/mcgillij/vimde/blob/main/screenshot.png?raw=true)
+
 ## What this setup provides
 With this setup I can use my regular `nvim` when editing files or doing some brief work, but I can also use the `vimde` command if I'm working within a well defined Python project with dependencies managed by Poetry.
 
