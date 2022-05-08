@@ -9,6 +9,16 @@ With this setup I can use my regular `nvim` when editing files or doing some bri
 
 This allows me to follow some REPL driven development and debugging and allows me to detach the session and come back to it later.
 
+### Bonus Key mappings
+- `,<space>` will bring the NERDTree file view
+- `,ff` will open the fuzzy file search
+- `,fg` fuzzy grep
+- `,fb` fuzzy buffer
+- `,ec` will edit this configuration file
+- `,sc` will reload this configuration
+- `<Tab>` and `<Shift><Tab>` will cycle splits
+- `<Ctrl-c>` will send selection to IPython if running with TMUX
+
 ## Dependencies
 
 This configuration depends on a few Linux tools being available in the environment.
