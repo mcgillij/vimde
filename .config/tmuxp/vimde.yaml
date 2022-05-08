@@ -1,0 +1,11 @@
+session_name: vimde
+windows:
+- layout: even-horizontal
+  panes:
+  - shell_command:
+    - poetry run nvim
+    focus: true
+  - shell_command:
+    - poetry run ipython
+  start_directory: "${PWD}"
+  window_name: vimde
