@@ -10,7 +10,7 @@ With this setup I can use my regular `nvim` when editing files or doing some bri
 This allows me to follow some REPL driven development and debugging and allows me to detach the session and come back to it later.
 
 ### Bonus Key mappings
-- `,<space>` will bring the NERDTree file view
+- `,<space><space>` will bring the NERDTree file view
 - `,ff` will open the fuzzy file search
 - `,fg` fuzzy grep
 - `,fb` fuzzy buffer
