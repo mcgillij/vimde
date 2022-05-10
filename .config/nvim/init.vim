@@ -15,11 +15,13 @@
 " ,sc will reload this configuration
 " <Tab> and <Shift><Tab> will cycle splits
 " <Ctrl-c> will send selection to IPython if running with TMUX
+" z and Z to zoom and unzoom a split
 "
 "
 " Basic configuration
 " change the leader key from "\" to ","
 let mapleader=","
+
 
 set list " show white space
 set spell " use spellchecking
@@ -92,6 +94,12 @@ Plug 'mhinz/vim-startify'
 " LSP installer / configuration
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 " Some python / git niceties
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
@@ -150,6 +158,11 @@ nnoremap <silent> <leader>ec :e $MYVIMRC<CR>
 " Reload the configuration file after editing it: ,sc
 nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
 
+" zoom nvim pane ,z or ,Z to re-balance
+nnoremap <leader>z :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>Z :wincmd =<cr>
+
+
 " Utilsnips
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
@@ -159,14 +172,78 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 nnoremap <silent> <Space> :NERDTreeToggle<CR>
 tnoremap <Esc> <C-\><C-n>
 
+set completeopt=menu,menuone,noselect
 " Plugin configurations made in lua
 " These could all be added to a separate plugin file since they are mostly
 " just copy / pasted default configurations, but for the sake of having a one
 " line init.vim I left them in here.
 "
 lua << EOF
+
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'ultisnips' }, -- For ultisnips users.
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 -- pyright LSP setup
-require'lspconfig'.pyright.setup{}
+-- The following example advertise capabilities to `pyright`.
+require'lspconfig'.pyright.setup {
+  capabilities = capabilities,
+}
 -- which-key setup
 require("which-key").setup {}
 

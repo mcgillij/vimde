@@ -22,6 +22,7 @@ This allows me to follow some REPL driven development and debugging and allows m
 - `<Tab>` and `<Shift><Tab>` will cycle splits
 - `<Ctrl-c>` will send selection to IPython if running with TMUX
 - `,z` and `,Z` to zoom and un-zoom a split
+- `<Ctrl><Space>` omni complete with language server
 
 ## Dependencies
 
@@ -63,3 +64,5 @@ To open this in nvim use the `,ec` command, and once you save any modifications 
 
 ## How to "use" this repo
 This assumes a fresh user on a fresh Linux install, allowing me to quickly setup my environment on a different machine. I just clone the repo, and then move all the files to ~/, and make sure that my `PATH` has `~/bin` in it.
+
+Fire up Nvim, and Run the **:PlugInstall**, **:LspInstall pyright**, **:LspInstall bashls**, **:TSInstall python**, **TSInstall bash**
