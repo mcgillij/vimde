@@ -148,6 +148,16 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 "open new split panes to right and below
 set splitright
 set splitbelow
+
+" create new split and go to it: ,w
+nnoremap <leader>w <C-w>v<C-w>l
+
+" Moving around splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
 " Remap <Tab>/<Shift><Tab> to toggle between windows
 nnoremap <Tab> <C-W>w
 nnoremap <S-Tab> <C-W>W
