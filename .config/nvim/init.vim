@@ -13,6 +13,7 @@
 " ,fb fuzzy buffer
 " ,ec will edit this configuration file
 " ,sc will reload this configuration
+" ,cc uses NerdCommenter to comment out a line or selected block
 " <Tab> and <Shift><Tab> will cycle splits
 " <Ctrl-c> will send selection to IPython if running with TMUX
 " z and Z to zoom and unzoom a split
